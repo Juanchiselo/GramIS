@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+html, body, #viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  #searchBar {
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 10px;
+    width: 400px;
+    transition: opacity 2s;
+    opacity: 0;
+    filter: drop-shadow(0px 0px 2px black);
+  }
+
+    .dot {
+      background-color: green;
+    }
+
+    .searchTypeButtons, .search-input {
+      text-align: center;
+    }
+
+    input[type=radio]{
+      position: absolute;
+      visibility: hidden;
+    }
+
+    label {
+      font-size: 20px;
+      font-family: 'Poppins', sans-serif;
+      color: #424242;
+      margin: 0px 10px;
+    }
+
+    label:hover {
+      color: black;
+    }
+
+    input[type="radio"]:checked+label{
+      color: black;
+      font-weight: bold;
+    }
+
+    
+.lightbox-style {
+  display: none;
+  position: fixed;
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+    
+  /* Modal Content (Image) */
+  .modal-content {
+    margin: auto;
+      display: block;
+      width: 80%;
+      max-width: 700px;
+    }
+  
+    /* Caption of Modal Image (Image Text) - Same Width as the Image */
+  #caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+      text-align: center;
+      color: #ccc;
+      padding: 10px 0;
+      height: 150px;
+    }
+    
+  /* Add Animation - Zoom in the Modal */
+  .modal-content, #caption { 
+      animation-name: zoom;
+      animation-duration: 0.6s;
+    }
+  
+    @keyframes zoom {
+      from {transform:scale(0)} 
+      to {transform:scale(1)}
+  }
+  
+  /* The Close Button */
+.close-style {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+  
+.close-style:hover,
+.close-style:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+  
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+
+.message-grid {
+  display: grid;
+  grid-template-columns: 70px auto 50px;
+  grid-template-areas: 
+    "spinner messageText stopQuery";
+  justify-items: center;
+  align-items: center;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  z-index: 99;
+  padding: 10px;
+  opacity: 0;
+  transition: opacity 2s;
+}
+
+.spinner {
+  grid-area: spinner;
+  align-content: center;
+  justify-content: center;
+  display: grid;
+}
+
+.progress-percentage {
+  grid-area: progressPercentage;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  z-index: 1;
+}
+
+.message-text {
+  grid-area: messageText;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  text-align: center;
+}
+
+.stop-query-button {
+  grid-area: stopQuery;
+  margin-left: 10px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.stop-query-button:hover,
+.stop-query-button:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* PRELOADER */
+
+.spinner-animation {
+  grid-area: spinnerAnimation;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  width: 40px;
+  height: 40px;
+  
+  border: 3px solid rgb(172, 172, 172);
+  border-top: 3px solid #DE326B;
+  border-radius: 50%;
+  
+  position: absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right: 0;
+  margin: auto;
+  
+  animation: spin 2s infinite linear;
+  z-index: 2;
+}
+
+@keyframes spin {
+  from{
+      transform: rotate(0deg);
+  }to{
+      transform: rotate(360deg);
+  }
+}
+  
+/* POPUP STYLES */
+
+.popup-grid {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  row-gap: 10px;
+  grid-template-areas: 
+    "popupHeader"
+    "popupContent"
+    "popupFooter";
+}
+  
+.popup-header {
+  grid-area: popupHeader;
+  display: grid;
+  grid-template-columns: 60px auto;
+  grid-template-areas:
+    "profilePicture userLocationInformation";
+}
+
+.profile-picture {
+  grid-area: profilePicture;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;    
+  object-fit: cover;
+  object-position: center right;
+}
+
+.user-location-information {
+  grid-area: userLocationInformation;
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-areas: 
+    "username"
+    "location";
+  align-content: center;
+}
+
+.username {
+  grid-area: username;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.location {
+  grid-area: location;
+  font-size: 12px;
+}
+
+.popup-content {
+  grid-area: popupContent;
+  cursor: pointer;
+}
+
+.popup-footer {
+  grid-area: popupFooter;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  row-gap: 5px;
+  grid-template-areas:
+    "likes"
+    "caption"
+    "date";
+}
+
+.likes {
+  grid-area: likes;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.caption {
+  grid-area: caption;
+  font-size: 12px;
+}
+
+.date {
+  grid-area: date;
+  font-size: 12px;
+}

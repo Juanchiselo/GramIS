@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>GramIS - Instagram Photo Mapper</title>
+    <link rel="stylesheet" href="./Stylesheet.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/4.8/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.8/"></script>
+  </head>
+  <body>
+    <div id="viewDiv"></div>
+    <div id="searchBar">
+      <div class="searchTypeButtons">
+        <input id="PeopleRadio" type="radio" name="searchType" value="People" checked>
+        <label for="PeopleRadio">People</label>
+        <input id="TagsRadio" type="radio" name="searchType" value="Tags">
+        <label for="TagsRadio">Tags</label>
+        <!-- <input id="PlacesRadio" type="radio" name="searchType" value="Places">
+        <label for="PlacesRadio">Places</label> -->
+      </div>
+      <br/>     
+      <div class="search-input">
+          <input class="search-term-text-input" type="text" name="searchTerm">
+          <button class="search-button" onclick="search()">Search</button>
+      </div>      
+    </div>
+
+    <div id="lightbox" class="lightbox-style">
+      <span id="close" class="close-style">&CircleTimes;</span>
+      <img id="modal-image" class="modal-content">
+      <div id="caption"></div>
+    </div>
+
+    <div class="message-grid">
+      <div class="spinner">
+        <div class="progress-percentage"></div>
+        <div class="spinner-animation"></div>
+      </div>      
+      <div class="message-text"></div>
+      <div class="stop-query-button" onclick="stopQuery()">&times;</div>  
+    </div>
+    
+    <script type="text/javascript" src="./HelperFunctions.js"></script>
+    <script type="text/javascript" src="./TestMap.js"></script>
+    <script type="text/javascript" src="./DataProcessor.js"></script>
+  </body>
+</html>
