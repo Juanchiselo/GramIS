@@ -1,11 +1,15 @@
 /* Searches for the given search term */
 function search()
 {
+    searchTermTextInput.blur();
+    resetMapZoom();
     numberOfProcessedPhotos = 0;
     doStopQuery = false; 
     searchTerm = searchTermTextInput.value;
     searchType = Array.from(document.getElementsByName('searchType'))
                         .find(radioButton => radioButton.checked).value;
+
+    searchTerm = searchTerm.trim();    
 
     switch(searchType)
     {
@@ -13,6 +17,8 @@ function search()
             getUserInfo(searchTerm);                
             break;
         case 'Tags':
+            if(searchTerm.charAt(0) == "#")
+                searchTerm = searchTerm.substring(1, searchTerm.length);
             getTagInfo(searchTerm, '', '');
             break;
         case 'Places':
@@ -94,7 +100,7 @@ function getUserFeed(username, nextMaxID)
 
         if(!doStopQuery && response.nextMaxID != null)
         {
-            sleep(2000).then(() => 
+            sleep(1000).then(() => 
             {
                 getUserFeed(username, response.nextMaxID);
             });
@@ -169,7 +175,7 @@ function getTagFeed(tag, rankToken, nextMaxID)
 
             if(!doStopQuery && response.nextMaxID != null)
             {
-                sleep(2000).then(() => 
+                sleep(1000).then(() => 
                 {
                     getTagFeed(tag, response.rankToken, response.nextMaxID);
                 });

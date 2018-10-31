@@ -15,7 +15,17 @@ searchTermTextInput.addEventListener('keyup', function(event)
 {
     event.preventDefault();
     if (event.keyCode === 13) 
-        document.getElementsByClassName('search-button')[0].click();
+        search();
+});
+
+document.getElementById('PeopleRadio').addEventListener('click', function(event)
+{
+  searchTermTextInput.placeholder = 'Username';
+});
+
+document.getElementById('TagsRadio').addEventListener('click', function(event)
+{
+  searchTermTextInput.placeholder = '#Hashtag';
 });
 
 function stopQuery()

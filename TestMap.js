@@ -38,10 +38,10 @@ function initializeMapElements()
   
     view = new MapView
     ({
-      center: [-100, 35],
+      center: [-30, 10],
       container: "viewDiv",
       map: map,
-      zoom: 3
+      zoom: 2
     });  
 
     view.constraints = {
@@ -56,7 +56,20 @@ function initializeMapElements()
         var item = event.item;
 
         if(item.title === searchTerm)
-        {
+         {
+          item.actionsSections = [
+            [{
+              title: "Go to full extent",
+              className: "esri-icon-zoom-out-fixed",
+              id: "full-extent"
+            },
+            {
+              title: "Remove layer",
+              className: "esri-icon-close",
+              id: "remove-layer"
+            }]
+          ];
+
           item.panel = {
             className: "esri-icon-drag-horizontal",
             open: item.visible
@@ -91,6 +104,19 @@ function initializeMapElements()
       function()
       {
         document.getElementById('searchBar').style.opacity = 1;
+
+        layerList.on("trigger-action", function(event) 
+        {
+          var id = event.action.id;
+
+          if (id === "full-extent") 
+            view.goTo(event.item.layer.graphics);
+          else if(id === 'remove-layer')
+          {
+            stopQuery();
+            map.layers.remove(event.item.layer);
+          }
+        });        
       }, 
       function(error)
       {
@@ -107,6 +133,14 @@ function createLayer(searchTerm)
   ], 
   function (GraphicsLayer) 
   {
+    map.layers.forEach
+    (
+      function(element)
+      {
+        element.visible = false;
+      }
+    );
+
     // Creates the GraphicsLayer where the Graphics
         // for the photos will be stored into.
         var photoLayer = new GraphicsLayer(
@@ -118,6 +152,12 @@ function createLayer(searchTerm)
 
         map.add(photoLayer);
   });
+}
+
+function resetMapZoom()
+{
+  view.zoom = 2;
+  view.center = [-30, 10];
 }
 
 function mapPhotos(data, searchTerm)
@@ -132,6 +172,8 @@ function mapPhotos(data, searchTerm)
   {
     if(data != null)
       {
+        var currentLayer = map.findLayerById(searchTerm);
+
         data.forEach(function(element) 
         {
           var point = {
@@ -151,7 +193,7 @@ function mapPhotos(data, searchTerm)
             "caption": element.caption,
             "city": element.city,
             "latitude": element.latitude,
-            "likes": element.likes,
+            "likes": element.likes !== null ? element.likes.toLocaleString('en') : 0,
             "location": element.location,
             "longitude": element.longitude,
             "profilePicUrl": element.profilePicUrl,
@@ -186,27 +228,35 @@ function mapPhotos(data, searchTerm)
 
           
   
-          map.findLayerById(searchTerm).graphics.add(pointGraphic);
+          currentLayer.graphics.add(pointGraphic);
+          
         }); 
+
+        //view.goTo(currentLayer.graphics);
       }
       else
         console.log("Data is null");
+
       
   });
 
+  
+
   var listItem = layerList.operationalItems.find(function(element){
     return element.title === searchTerm;
+
+    
   });
 
-  listItem.panel.content = updateLayerListData(listItem);
+  listItem.panel.content = updateLayerListData(listItem);  
 }
 
 function updateLayerListData(photoLayer)
 {
   updateProgressPercentage(photoLayer.layer.graphics.length, searchTermInfo.mediaCount);
 
-  var layerListStats = '<p><b>' + searchTermInfo.mediaCount + '</b> Total media.<br>' +
-                         '<b>' +  photoLayer.layer.graphics.length + '</b> Geo-tagged media.</p>';
+  var layerListStats = '<p><b>' + searchTermInfo.mediaCount.toLocaleString('en') + '</b> Total media.<br>' +
+                         '<b>' +  photoLayer.layer.graphics.length.toLocaleString('en') + '</b> Geo-tagged media.</p>';
   
   return layerListStats;
 }
