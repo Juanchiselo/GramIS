@@ -9,8 +9,8 @@ function search()
     searchType = Array.from(document.getElementsByName('searchType'))
                         .find(radioButton => radioButton.checked).value;
 
-    searchTerm = searchTerm.trim();    
-
+    searchTerm = searchTerm.trim(); 
+       
     switch(searchType)
     {
         case 'People':
@@ -256,11 +256,7 @@ function getPlacesFeed(place, rankToken)
             }
         }
         else
-        {
-            console.log(response.error);            
-        }
+            console.log(response.error);
     };
     request.send(requestData);
 }
-
-
