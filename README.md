@@ -10,7 +10,7 @@
 
 ## Application Demo
 
-<img src="./Documentation/GramIS-Demon.gif" width="720"/>
+<img src="./Documentation/GramIS-Demo.gif" width="720"/>
 <a href="http://www.josejuansandoval.com/projects/GramIS/"><strong>GramIS Application Demo</strong></a>
 
 ## Usage
