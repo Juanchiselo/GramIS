@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="./Documentation/GramIS-Logo.png" width="256"/><br />
+    <img src="./Documentation/GramIS-Logo.png" width="384"/><br />
     GramIS: Instagram Photo Mapper
 </h1>
 
@@ -19,12 +19,12 @@
 
 ## Requirements
 
-* This application requires the use of Instagram's private API created by @mgp25 which is not included in this repo. If you want to run it locally or on your own server download the API from [here](https://github.com/mgp25/Instagram-API).
+* This application requires the use of Instagram's private API created by @mgp25 which is not included in this repository. If you want to run it locally or on your own server download the API from [here](https://github.com/mgp25/Instagram-API).
 * This application also requires ESRI's ArcGIS JavaScript API. For more information about it click [here](https://developers.arcgis.com/javascript/).
 
 ## Features
 
-* Search for photos from users or hashtags.
+* Search for photos from users or hashtags.<br />
   <img src="./Documentation/gramis-searchbox.gif" width="256"/><br />
 * View a photo's details in the popup box.
   * User's profile picture (Click it to open the user's page in Instagram.com)
@@ -33,15 +33,15 @@
   * Picture (Click it to open it lightbox mode)
   * Likes
   * Caption
-  * Upload date
-  <img src="./Documentation/gramis-popup.gif" width="384"/><br />
+  * Upload date<br />
+  <img src="./Documentation/gramis-popup.gif" width="256"/><br />
 * View search term details in the layer list. Each search is placed on a different layer.
   * Number of total media uploaded by the user or containing the hashtag.
   * Number of geo-tagged media acquired so far.
   * Actions
     * Toggle layer visibility.
     * Zoom in or out to the layer's full extent.
-    * Remove layer.
+    * Remove layer.<br />
   <img src="./Documentation/gramis-layerlist.jpg" width="256"/><br />
 
 ## Usage
