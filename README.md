@@ -13,8 +13,10 @@
 ## Application Demo
 
 <div align="center">
-    <img src="./Documentation/GramIS-Demo.gif" width="640"/><br /><br />
-    <a href="http://www.josejuansandoval.com/projects/GramIS/"><strong>Click here to go to the GramIS Live Demo</strong></a>
+    <a href="http://www.josejuansandoval.com/projects/gramis/">
+        <img src="./Documentation/GramIS-Demo.gif" width="640"/><br /><br />
+        <strong>Click here to go to the GramIS Live Demo</strong>
+    </a>
 </div>
 
 ## Requirements
